@@ -17,6 +17,7 @@ You can access the deployed AI Assistant here:
 
 > The application frontend and backend are hosted on Vercel, and AI responses are generated using Ollama Cloud with the `gpt-oss:20b` model.
 
+![alt text](image.png)
 
 ```
 
