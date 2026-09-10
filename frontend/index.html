@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Assistant</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <header class="header">
+        <div>
+            <h1>AI Assistant</h1>
+            <p>Powered by Ollama Cloud • gpt-oss:20b</p>
+        </div>
+
+        <div class="status">
+            <span class="status-dot"></span>
+            Online
+        </div>
+    </header>
+
+
+    <main id="chatBox" class="chat-box">
+
+        <div class="welcome">
+
+            <div class="bot-logo">
+                AI
+            </div>
+
+            <h2>How can I help you?</h2>
+
+            <p>
+                Ask me anything. Your request will be processed
+                securely through Ollama Cloud using the gpt-oss:20b model.
+            </p>
+
+        </div>
+
+    </main>
+
+
+    <footer class="input-container">
+
+        <div class="input-box">
+
+            <input
+                type="text"
+                id="message"
+                placeholder="Message AI Assistant..."
+                autocomplete="off"
+            >
+
+            <button
+                id="sendButton"
+                onclick="sendMessage()"
+            >
+                Send
+            </button>
+
+        </div>
+
+        <p class="footer-text">
+            Powered by Ollama Cloud
+        </p>
+
+    </footer>
+
+</div>
+
+
+<script src="script.js?v=3"></script>
+
+</body>
+
+</html>
