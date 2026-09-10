@@ -1,17 +1,13 @@
 # AI Assistant using FastAPI, Ollama and Vercel
 
-A simple full-stack Generative AI chatbot application built using Python, FastAPI, Ollama, HTML, CSS, JavaScript, Vercel, and GitHub.
+A full-stack Generative AI chatbot application built using **Python, FastAPI, Ollama, HTML, CSS, JavaScript, Vercel, Git, and GitHub**.
 
-The application supports both local Ollama models for development and Ollama Cloud models for deployed environments.
+The application supports two execution modes:
+
+- **Local Development:** Runs `llama3.2:latest` using Ollama installed locally.
+- **Cloud / Production:** Runs `gpt-oss:20b` using Ollama Cloud and a FastAPI backend deployed on Vercel.
 
 ---
-
-## Project Overview
-
-This project demonstrates how to build a complete Generative AI application with a frontend, backend API, and Large Language Model integration.
-
-The user enters a question in the web interface. The frontend sends that question to the FastAPI backend. The backend communicates with Ollama and returns the generated AI response to the frontend.
-
 
 ## Live Application
 
@@ -19,10 +15,39 @@ You can access the deployed AI Assistant here:
 
 [Open AI Assistant](https://chatbotfrontend-omega.vercel.app/)
 
-> The application frontend and backend are hosted on Vercel, and the AI responses are generated using Ollama Cloud.
+> The application frontend and backend are hosted on Vercel, and AI responses are generated using Ollama Cloud with the `gpt-oss:20b` model.
 
 
-### Application Flow
+```
+
+> The backend URL is mainly for development and API testing. Normal users should use the frontend application URL.
+
+---
+
+# Project Overview
+
+This project demonstrates how to build and deploy a complete Generative AI application consisting of:
+
+- Frontend user interface
+- Python backend
+- REST API
+- Large Language Model integration
+- Local LLM execution
+- Cloud LLM execution
+- Vercel deployment
+- GitHub source-code management
+
+The user enters a question in the web interface.
+
+The frontend sends the question to the FastAPI backend.
+
+The backend communicates with Ollama.
+
+Ollama processes the request using the configured Large Language Model and returns the generated response.
+
+---
+
+# Application Flow
 
 ```text
 User
@@ -44,7 +69,7 @@ Frontend
 
 ---
 
-## Project Structure
+# Project Structure
 
 ```text
 ChatBot_1/
@@ -65,26 +90,28 @@ ChatBot_1/
 
 ---
 
-## Features
+# Features
 
-- AI chatbot web interface
+- Generative AI chatbot interface
 - Python FastAPI backend
 - REST API integration
 - Ollama local model support
-- Ollama Cloud model support
+- Ollama Cloud support
+- Local and cloud execution modes
 - Responsive frontend
 - User and AI message bubbles
-- Loading animation
+- Loading animation while AI generates a response
 - Enter key support for sending messages
 - Error handling
-- Local development support
-- Vercel deployment
-- Environment variable based API-key management
-- GitHub source-code management
+- Environment-variable-based production configuration
+- API key protection
+- Vercel frontend deployment
+- Vercel backend deployment
+- Git and GitHub source control
 
 ---
 
-## Technology Stack
+# Technology Stack
 
 | Component | Technology |
 |---|---|
@@ -92,17 +119,80 @@ ChatBot_1/
 | Backend | Python |
 | API Framework | FastAPI |
 | LLM Platform | Ollama |
-| Local Model | Llama 3.2 |
-| Cloud Model | gpt-oss:20b |
+| Local Development Model | `llama3.2:latest` |
+| Production Cloud Model | `gpt-oss:20b` |
 | Frontend Hosting | Vercel |
 | Backend Hosting | Vercel |
 | Source Control | Git & GitHub |
 
 ---
 
+# Models Used
+
+The application supports two different models depending on where it is running.
+
+| Mode | Model | Purpose |
+|---|---|---|
+| Local Development | `llama3.2:latest` | Runs locally through Ollama |
+| Cloud / Production | `gpt-oss:20b` | Runs through Ollama Cloud |
+
+---
+
+## Local Development Model
+
+When the application is running locally and `OLLAMA_API_KEY` is not available, the FastAPI backend uses:
+
+```text
+llama3.2:latest
+```
+
+The model runs through Ollama installed on the developer's computer.
+
+Architecture:
+
+```text
+Frontend
+   ↓
+FastAPI
+   ↓
+Local Ollama
+   ↓
+llama3.2:latest
+   ↓
+AI Response
+```
+
+---
+
+## Production Cloud Model
+
+When `OLLAMA_API_KEY` is available, the backend automatically switches to Ollama Cloud.
+
+The currently configured production model is:
+
+```text
+gpt-oss:20b
+```
+
+Architecture:
+
+```text
+Vercel Frontend
+      ↓
+Vercel FastAPI Backend
+      ↓
+Ollama Cloud
+      ↓
+gpt-oss:20b
+      ↓
+AI Response
+```
+
+---
+
 # Prerequisites
 
-Before running the project locally, install the following:
+Before running the application locally, install:
 
 - Python
 - Ollama
@@ -111,9 +201,11 @@ Before running the project locally, install the following:
 
 ---
 
-## Check Python Installation
+# Check Python Installation
 
-Open PowerShell or the VS Code terminal and run:
+Open PowerShell, Command Prompt, or the VS Code terminal.
+
+Run:
 
 ```bash
 python --version
@@ -127,7 +219,7 @@ Python 3.12.x
 
 ---
 
-## Check Ollama Installation
+# Check Ollama Installation
 
 Run:
 
@@ -135,9 +227,11 @@ Run:
 ollama --version
 ```
 
+If Ollama is installed correctly, its version will be displayed.
+
 ---
 
-## Check Git Installation
+# Check Git Installation
 
 Run:
 
@@ -155,49 +249,47 @@ git version 2.x.x.windows.x
 
 # How to Run the Application Locally
 
-## Step 1 - Clone the GitHub Repository
+## Step 1 - Clone the Repository
 
-If the project is already available locally, you can skip this step.
-
-Otherwise run:
+Clone the GitHub repository:
 
 ```bash
 git clone https://github.com/YOUR-USERNAME/chatbot1.git
 ```
 
-Then go inside the project:
+Go inside the project:
 
 ```bash
 cd chatbot1
 ```
 
+If the project already exists on your computer, you can skip this step.
+
 ---
 
-## Step 2 - Create Python Virtual Environment
+# Step 2 - Create a Python Virtual Environment
 
-From the project root folder run:
+From the project root directory:
 
 ```bash
 python -m venv .venv
 ```
 
-Activate the virtual environment on Windows:
+Activate the environment on Windows:
 
 ```bash
 .venv\Scripts\activate
 ```
 
-After activation you should see:
+After activation, the terminal should show:
 
 ```text
 (.venv)
 ```
 
-in your terminal.
-
 ---
 
-## Step 3 - Install Python Dependencies
+# Step 3 - Install Python Dependencies
 
 Run:
 
@@ -205,7 +297,7 @@ Run:
 python -m pip install -r backend/requirements.txt
 ```
 
-The main Python packages used in the project are:
+The main Python packages used are:
 
 ```text
 fastapi
@@ -216,13 +308,9 @@ ollama
 
 ---
 
-# Running with Local Ollama
+# Step 4 - Download the Local Ollama Model
 
-When `OLLAMA_API_KEY` is not configured, the backend uses the locally installed Ollama model.
-
-## Step 4 - Download Llama 3.2
-
-Run:
+Download Llama 3.2:
 
 ```bash
 ollama pull llama3.2
@@ -242,7 +330,7 @@ llama3.2:latest
 
 ---
 
-## Step 5 - Test Ollama
+# Step 5 - Test Ollama
 
 Run:
 
@@ -250,13 +338,13 @@ Run:
 ollama run llama3.2
 ```
 
-Ask a question:
+Ask:
 
 ```text
 What is Generative AI?
 ```
 
-If the model gives you a response, Ollama is working properly.
+If Ollama generates an answer, the local model is working correctly.
 
 To exit:
 
@@ -266,9 +354,7 @@ To exit:
 
 ---
 
-# Running the FastAPI Backend
-
-## Step 6 - Start the Backend
+# Step 6 - Start the FastAPI Backend
 
 From the root project directory run:
 
@@ -282,7 +368,7 @@ The backend will start at:
 http://127.0.0.1:8000
 ```
 
-You should see output similar to:
+You should see:
 
 ```text
 Uvicorn running on http://127.0.0.1:8000
@@ -290,9 +376,9 @@ Uvicorn running on http://127.0.0.1:8000
 
 ---
 
-## Step 7 - Test the Backend
+# Step 7 - Test the Backend
 
-Open this URL in your browser:
+Open:
 
 ```text
 http://127.0.0.1:8000
@@ -308,15 +394,13 @@ Expected response:
 
 ---
 
-## Step 8 - Open FastAPI Swagger UI
+# Step 8 - Open FastAPI Swagger UI
 
 Open:
 
 ```text
 http://127.0.0.1:8000/docs
 ```
-
-Swagger UI allows you to test the API directly from the browser.
 
 Select:
 
@@ -348,11 +432,11 @@ You should receive an AI-generated response.
 
 ---
 
-# Running the Frontend
+# Step 9 - Run the Frontend
 
 Keep the backend terminal running.
 
-Open another PowerShell or VS Code terminal.
+Open another terminal.
 
 Go to the frontend directory:
 
@@ -360,25 +444,23 @@ Go to the frontend directory:
 cd frontend
 ```
 
-Start a simple Python HTTP server:
+Start the frontend server:
 
 ```bash
 python -m http.server 5500
 ```
 
-The frontend will be available at:
+Open:
 
 ```text
 http://localhost:5500
 ```
 
-Open this URL in your browser.
-
-You should now see the AI Assistant interface.
+The AI Assistant interface should appear.
 
 ---
 
-## Local Application Architecture
+# Local Development Architecture
 
 ```text
 Browser
@@ -391,91 +473,114 @@ http://127.0.0.1:8000
         ↓
 Local Ollama
         ↓
-llama3.2
+llama3.2:latest
         ↓
 AI Response
 ```
 
 ---
 
-# Local Backend Configuration
+# How Local and Cloud Mode Are Selected
 
-The backend automatically uses local Ollama when this environment variable is not present:
+The FastAPI backend checks for:
 
 ```text
 OLLAMA_API_KEY
 ```
 
-The local model used by the project is:
+If `OLLAMA_API_KEY` is not available:
 
 ```text
+Local Mode
+   ↓
+Ollama installed locally
+   ↓
 llama3.2:latest
 ```
 
-The basic local request flow is:
+If `OLLAMA_API_KEY` is available:
 
 ```text
-Frontend
+Cloud Mode
    ↓
-FastAPI
+Ollama Cloud
    ↓
-Ollama installed on local computer
-   ↓
-llama3.2
-```
-
----
-
-# Ollama Cloud Mode
-
-The deployed version of the application uses Ollama Cloud.
-
-The backend checks for the following environment variable:
-
-```text
-OLLAMA_API_KEY
-```
-
-If the API key exists, the application uses Ollama Cloud instead of local Ollama.
-
-The deployed cloud model currently used is:
-
-```text
 gpt-oss:20b
 ```
 
-The Vercel environment variables are:
+This allows the same backend application to support both local development and cloud deployment.
+
+---
+
+# Local Configuration
+
+No `.env` file is used in this project.
+
+For local development:
+
+```text
+OLLAMA_API_KEY is not configured
+        ↓
+Backend detects local mode
+        ↓
+Local Ollama is used
+        ↓
+llama3.2:latest
+```
+
+Therefore, the local application can run without configuring cloud credentials.
+
+---
+
+# Ollama Cloud Configuration
+
+The production application uses environment variables configured directly in Vercel.
+
+The required production variables are:
 
 ```text
 OLLAMA_API_KEY
 OLLAMA_MODEL
 ```
 
-Example model configuration:
+The production model is configured as:
 
 ```text
 OLLAMA_MODEL=gpt-oss:20b
 ```
 
+The variables are configured directly in:
+
+```text
+Vercel
+→ Project
+→ Settings
+→ Environment Variables
+```
+
+No `.env` file is required for the deployed application.
+
 ---
 
-## API Key Security
+# API Key Security
 
-Never hard-code your Ollama API key inside Python code.
+Never hard-code the Ollama API key inside Python code.
 
-Do not do this:
+Do not use:
 
 ```python
 api_key = "my-secret-api-key"
 ```
 
-Instead use:
+Instead, the backend reads the key from the Vercel environment:
 
 ```python
 api_key = os.getenv("OLLAMA_API_KEY")
 ```
 
-The actual API key should be stored securely in Vercel Environment Variables.
+The actual API key is securely stored in Vercel and is not part of the GitHub repository.
+
+The frontend must never contain the Ollama API key.
 
 ---
 
@@ -489,7 +594,7 @@ GET /
 
 Purpose:
 
-Check whether the backend is running.
+Verify that the backend is running.
 
 Example response:
 
@@ -515,7 +620,7 @@ Example request:
 }
 ```
 
-Example response:
+Example production response:
 
 ```json
 {
@@ -532,89 +637,15 @@ Example response:
 GET /models
 ```
 
-This endpoint returns the Ollama models available through the configured Ollama Cloud account.
+This endpoint retrieves the Ollama models available through the configured Ollama Cloud account.
 
----
-
-# Local Mode vs Cloud Mode
-
-## Local Mode
-
-```text
-Frontend
-    ↓
-FastAPI
-    ↓
-Local Ollama
-    ↓
-llama3.2
-```
-
-## Cloud Mode
-
-```text
-Frontend
-    ↓
-Vercel FastAPI Backend
-    ↓
-Ollama Cloud
-    ↓
-gpt-oss:20b
-```
-
-The application automatically determines which mode to use based on whether `OLLAMA_API_KEY` exists.
-
----
-
-# Deployment Architecture
-
-The application is deployed using Vercel.
-
-## Frontend Deployment
-
-```text
-HTML
-CSS
-JavaScript
-    ↓
-Vercel
-```
-
-## Backend Deployment
-
-```text
-FastAPI
-    ↓
-Vercel
-    ↓
-Ollama Cloud API
-```
-
-## Complete Production Architecture
-
-```text
-User
-  ↓
-Vercel Frontend
-  ↓
-JavaScript HTTPS Request
-  ↓
-Vercel FastAPI Backend
-  ↓
-Ollama Cloud API
-  ↓
-gpt-oss:20b
-  ↓
-Generated AI Response
-  ↓
-Frontend
-```
+It is mainly useful for development and troubleshooting.
 
 ---
 
 # Frontend to Backend Communication
 
-The frontend sends the user's message to the deployed backend using JavaScript.
+The frontend sends the user's message to the FastAPI backend using JavaScript.
 
 Example:
 
@@ -635,62 +666,143 @@ const response = await fetch(
 );
 ```
 
-The frontend should never contain the Ollama API key.
+The frontend communicates only with FastAPI.
+
+It does not directly communicate with Ollama Cloud.
+
+This prevents the Ollama API key from being exposed to users.
+
+---
+
+# Production Architecture
+
+```text
+User
+  ↓
+Vercel Frontend
+  ↓
+HTML + CSS + JavaScript
+  ↓
+HTTPS POST Request
+  ↓
+Vercel FastAPI Backend
+  ↓
+OLLAMA_API_KEY
+  ↓
+Ollama Cloud
+  ↓
+gpt-oss:20b
+  ↓
+Generated AI Response
+  ↓
+FastAPI
+  ↓
+Frontend
+  ↓
+User
+```
+
+---
+
+# Deployment
+
+Both the frontend and backend are deployed separately on Vercel.
+
+## Frontend Deployment
+
+```text
+HTML
+CSS
+JavaScript
+    ↓
+Vercel
+```
+
+The frontend provides the user interface.
+
+---
+
+## Backend Deployment
+
+```text
+Python
+FastAPI
+    ↓
+Vercel
+    ↓
+Ollama Cloud
+    ↓
+gpt-oss:20b
+```
+
+The backend securely handles communication with Ollama Cloud.
 
 ---
 
 # Environment Variables
 
-The following environment variables are configured securely in Vercel:
+The production backend uses environment variables configured directly in Vercel.
 
 | Variable | Purpose |
 |---|---|
 | `OLLAMA_API_KEY` | Authenticates the backend with Ollama Cloud |
-| `OLLAMA_MODEL` | Defines which Ollama Cloud model should be used |
+| `OLLAMA_MODEL` | Defines the cloud model |
 
-Current model:
+Current production model:
 
 ```text
 gpt-oss:20b
 ```
 
+For local development, these cloud environment variables are not required.
+
 ---
 
 # GitHub
 
-GitHub is used to store and manage the source code for this project.
+GitHub is used to store and manage the project source code.
 
-The application itself is currently hosted on Vercel.
+The application itself is hosted on Vercel.
 
 ```text
 GitHub
-    ↓
+   ↓
 Source Code Repository
 
+
 Vercel
-    ↓
+   ↓
 Frontend + Backend Hosting
 
+
 Ollama Cloud
-    ↓
-AI Model
+   ↓
+gpt-oss:20b
 ```
+
+Users access the application using the Vercel frontend URL.
+
+Developers can access the source code through GitHub.
 
 ---
 
 # Git Commands
 
-## Initialize Git
+## Initialize Repository
 
 ```bash
 git init
 ```
 
-## Check Status
+---
+
+## Check Git Status
 
 ```bash
 git status
 ```
+
+---
 
 ## Add Files
 
@@ -698,11 +810,15 @@ git status
 git add .
 ```
 
-## Commit Changes
+---
+
+## Commit Files
 
 ```bash
 git commit -m "Initial commit - AI chatbot application"
 ```
+
+---
 
 ## Set Main Branch
 
@@ -710,47 +826,63 @@ git commit -m "Initial commit - AI chatbot application"
 git branch -M main
 ```
 
-## Add GitHub Repository
+---
+
+## Add GitHub Remote
 
 ```bash
 git remote add origin https://github.com/YOUR-USERNAME/chatbot1.git
 ```
 
-## Verify Remote Repository
+---
+
+## Verify Remote
 
 ```bash
 git remote -v
 ```
 
-## Push Code
+---
+
+## Push to GitHub
+
+For the first push:
 
 ```bash
 git push -u origin main
 ```
 
+For future pushes:
+
+```bash
+git push
+```
+
 ---
 
-# Updating Code on GitHub
+# Updating the Project on GitHub
 
-After making changes to the project:
+After modifying the application:
+
+Check changes:
 
 ```bash
 git status
 ```
 
-Then:
+Add changes:
 
 ```bash
 git add .
 ```
 
-Commit:
+Commit changes:
 
 ```bash
 git commit -m "Update chatbot application"
 ```
 
-Push:
+Push changes:
 
 ```bash
 git push
@@ -760,9 +892,9 @@ git push
 
 # .gitignore
 
-The project uses `.gitignore` to prevent unnecessary or sensitive files from being uploaded to GitHub.
+The project uses `.gitignore` to prevent unnecessary or potentially sensitive files from being committed.
 
-Example:
+Recommended `.gitignore`:
 
 ```text
 .venv/
@@ -773,30 +905,32 @@ __pycache__/
 **/.vercel/
 ```
 
-This prevents the following from being committed:
+The project currently does **not** use a `.env` file.
 
-```text
-Python virtual environment
-Python cache files
-Environment variable files
-Local Vercel configuration
-```
+The `.env` entry is included only as a safety precaution so that if a `.env` file is created in the future, it will not accidentally be committed to GitHub.
+
+The `.gitignore` prevents items such as:
+
+- Python virtual environment
+- Python cache files
+- Future `.env` files
+- Local Vercel configuration
+
+from being committed.
 
 ---
 
 # Security Practices
 
-The project follows basic security practices.
+The project follows basic security practices:
 
-The Ollama API key is stored only on the backend using environment variables.
-
-The API key is not included in frontend JavaScript.
-
-The `.env` file is excluded from Git.
-
-Ollama API requests are made from the backend.
-
-Users communicate with the FastAPI backend instead of directly accessing Ollama credentials.
+- Ollama API key is stored securely in Vercel Environment Variables.
+- API keys are not hard-coded in Python.
+- API keys are not exposed in frontend JavaScript.
+- No `.env` file containing credentials is used.
+- Ollama Cloud communication happens through the FastAPI backend.
+- Users communicate with FastAPI rather than directly with Ollama Cloud.
+- Sensitive Vercel configuration is excluded from Git.
 
 ---
 
@@ -804,35 +938,102 @@ Users communicate with the FastAPI backend instead of directly accessing Ollama 
 
 ```text
 Frontend
-HTML
-CSS
-JavaScript
+├── HTML
+├── CSS
+└── JavaScript
 
 Backend
-Python
-FastAPI
+├── Python
+└── FastAPI
 
 AI Platform
-Ollama
+└── Ollama
 
-Local Model
-Llama 3.2
+Local Development Model
+└── llama3.2:latest
 
-Cloud Model
-gpt-oss:20b
+Production Cloud Model
+└── gpt-oss:20b
 
 Hosting
-Vercel
+└── Vercel
 
-Version Control
-GitHub
+Source Control
+├── Git
+└── GitHub
+```
+
+---
+
+# Quick Start
+
+For developers who already have Python and Ollama installed:
+
+## 1. Clone Repository
+
+```bash
+git clone https://github.com/YOUR-USERNAME/chatbot1.git
+```
+
+## 2. Enter Project
+
+```bash
+cd chatbot1
+```
+
+## 3. Create Virtual Environment
+
+```bash
+python -m venv .venv
+```
+
+## 4. Activate Virtual Environment
+
+```bash
+.venv\Scripts\activate
+```
+
+## 5. Install Dependencies
+
+```bash
+python -m pip install -r backend/requirements.txt
+```
+
+## 6. Download Local Model
+
+```bash
+ollama pull llama3.2
+```
+
+## 7. Start Backend
+
+```bash
+uvicorn backend.main:app --reload
+```
+
+## 8. Open Another Terminal
+
+```bash
+cd frontend
+```
+
+## 9. Start Frontend
+
+```bash
+python -m http.server 5500
+```
+
+## 10. Open Application
+
+```text
+http://localhost:5500
 ```
 
 ---
 
 # Future Enhancements
 
-The application can be enhanced further by adding:
+Possible future improvements include:
 
 - Conversation history
 - Chat memory
@@ -840,95 +1041,106 @@ The application can be enhanced further by adding:
 - Streaming AI responses
 - User authentication
 - Google login
+- Microsoft login
 - Database integration
-- Saved conversations
+- Save previous conversations
+- User-specific chat history
 - Model selection
-- RAG
+- Retrieval-Augmented Generation (RAG)
 - PDF upload
 - Document question answering
 - Rate limiting
-- User-specific chat history
-- Better monitoring and logging
+- API usage monitoring
+- Better logging
+- Improved exception handling
+- Dynamic model selection
+- Admin dashboard
 
 ---
 
 # Learning Objectives
 
-This project demonstrates how a Generative AI application works end-to-end.
+This project provides hands-on experience with:
+
+- Python programming
+- FastAPI
+- REST API development
+- Frontend development
+- Backend development
+- Frontend-backend communication
+- Generative AI
+- Large Language Models
+- Ollama
+- Local LLM execution
+- Cloud LLM APIs
+- Environment variables
+- API security
+- Vercel deployment
+- Git
+- GitHub
+
+---
+
+# End-to-End Learning Flow
 
 ```text
 User Prompt
      ↓
 Frontend
      ↓
-REST API Call
+JavaScript
+     ↓
+HTTP REST API
      ↓
 FastAPI
      ↓
-LLM
+Ollama
+     ↓
+Large Language Model
      ↓
 Generated Response
      ↓
 Frontend
+     ↓
+User
 ```
-
-The project provides hands-on experience with Python, FastAPI, REST APIs, frontend-backend communication, LLM integration, local LLM execution, cloud LLM APIs, environment variables, API security, Vercel deployment, Git, and GitHub.
 
 ---
 
-# Running the Complete Application - Quick Reference
+# Summary
 
-Open the project:
+This project demonstrates a complete full-stack Generative AI chatbot architecture.
 
-```bash
-cd chatbot1
-```
-
-Activate the virtual environment:
-
-```bash
-.venv\Scripts\activate
-```
-
-Install dependencies:
-
-```bash
-python -m pip install -r backend/requirements.txt
-```
-
-Make sure Ollama is available:
-
-```bash
-ollama list
-```
-
-Start backend:
-
-```bash
-uvicorn backend.main:app --reload
-```
-
-Open another terminal.
-
-Go to frontend:
-
-```bash
-cd frontend
-```
-
-Start frontend:
-
-```bash
-python -m http.server 5500
-```
-
-Open:
+## Local Development
 
 ```text
-http://localhost:5500
+Frontend
+→ FastAPI
+→ Local Ollama
+→ llama3.2:latest
 ```
 
-The application should now be ready to use.
+No `.env` file or cloud API key is required for local mode.
+
+## Production
+
+```text
+Vercel Frontend
+→ Vercel FastAPI Backend
+→ Ollama Cloud
+→ gpt-oss:20b
+```
+
+Production credentials and model configuration are stored directly in Vercel Environment Variables.
+
+## Source Control
+
+```text
+Git
+→ GitHub
+```
+
+This setup allows the application to be developed locally using a locally running LLM while also supporting cloud deployment for public access.
 
 ---
 
