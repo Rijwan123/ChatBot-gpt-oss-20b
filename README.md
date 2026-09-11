@@ -15,6 +15,10 @@ You can access the deployed AI Assistant here:
 
 [Open AI Assistant](https://chatbotfrontend-omega.vercel.app/)
 
+## Application Preview
+
+![AI Assistant Application](images\image.png)
+
 > The application frontend and backend are hosted on Vercel, and AI responses are generated using Ollama Cloud with the `gpt-oss:20b` model.
 
 
